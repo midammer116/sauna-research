@@ -49,23 +49,35 @@
     xhrFooter.send();
   }
 
-  // --- YouTube Video Embed (randomly picks one per page, main content) ---
+  // --- YouTube Video Embed (randomly picks one per page, main content, 16:9 aspect ratio) ---
   var videoPlaceholder = document.getElementById('video-embed-placeholder');
   if (videoPlaceholder) {
     var videoIds = ['7c-OXc6H7us', 'RWkv9ad7zvc', 'wnaOCNnE8ts', 'NunbmVSmx2A'];
     var randomIndex = Math.floor(Math.random() * videoIds.length);
     var videoId = videoIds[randomIndex];
 
+    // Create a responsive wrapper for 16:9 aspect ratio
+    var wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    wrapper.style.width = '100%';
+    wrapper.style.paddingBottom = '56.25%'; /* 16:9 aspect ratio */
+    wrapper.style.height = '0';
+    wrapper.style.overflow = 'hidden';
+    wrapper.style.borderRadius = '8px';
+
     var iframe = document.createElement('iframe');
-    iframe.width = '100%';
-    iframe.height = '200';
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
     iframe.src = 'https://www.youtube.com/embed/' + videoId;
     iframe.title = 'Sauna Health YouTube Video';
     iframe.frameBorder = '0';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;
-    iframe.style.borderRadius = '8px';
-    videoPlaceholder.appendChild(iframe);
+    wrapper.appendChild(iframe);
+    videoPlaceholder.appendChild(wrapper);
   }
 
   // --- YouTube Short Embed (sidebar, portrait format) ---
@@ -74,8 +86,8 @@
     var shortIframe = document.createElement('iframe');
     shortIframe.width = '100%';
     shortIframe.height = '350';
-    shortIframe.src = 'https://www.youtube.com/embed/_s7yIT1fvOU';
-    shortIframe.title = 'Safe Sauna YouTube Short';
+    shortIframe.src = 'https://www.youtube.com/embed/SlwJkg3CSXc';
+    shortIframe.title = 'Sauna Lifestyle YouTube Short';
     shortIframe.frameBorder = '0';
     shortIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     shortIframe.allowFullscreen = true;
