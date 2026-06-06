@@ -8,11 +8,7 @@
   // --- Components base path ---
   var basePath = '';
   var imgPath = 'assets/images/';
-  // Detect if we're in a subfolder (pages/) to adjust component & image paths
-  if (window.location.pathname.indexOf('/pages/') !== -1) {
-    basePath = '../';
-    imgPath = '../assets/images/';
-  }
+  // All pages are at root level, no subfolder adjustment needed
 
   // --- Load Header ---
   var headerPlaceholder = document.getElementById('header-placeholder');
